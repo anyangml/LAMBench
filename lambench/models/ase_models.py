@@ -81,6 +81,7 @@ class ASEModel(BaseLargeAtomModel):
         super().__init__(*args, **kwargs)
         self.calc = None
 
+    @property
     def calc(self) -> Calculator:
         """ASE Calculator with the model loaded."""
         calculator_dispatch = {
