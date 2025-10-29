@@ -35,11 +35,6 @@ def get_dataset(paths: list[Optional[Path]]) -> Optional[list[BohriumDatasetsArt
     for path in paths:
         if path is not None and str(path).startswith("/bohr/"):
             r.append(BohriumDatasetsArtifact(path))
-        # handle dual label datasets
-        elif path is not None and isinstance(path, dict):
-            for p in path.values():
-                if str(p).startswith("/bohr/"):
-                    r.append(BohriumDatasetsArtifact(p))
     # due the constraint of the dflow Task, return None if no dataset, but not an empty list
     return r if r else None
 
@@ -58,6 +53,11 @@ def submit_tasks_dflow(
         name = f"{task.task_name}--{model.model_name}"
         # dflow task name should be alphanumeric
         name = "".join([c if c.isalnum() else "-" for c in name])
+        if task.test_data is not None:
+            # handle dict type test_data
+            task_data = list(task.test_data.values()) if isinstance(task.test_data, dict) else task.test_data
+        else:
+            task_data = None
 
         dflow_task = Task(
             name=name,
@@ -74,7 +74,7 @@ def submit_tasks_dflow(
                 "task": task,
                 "model": model,
             },
-            artifacts={"dataset": get_dataset([model.model_path, task.test_data])},
+            artifacts={"dataset": get_dataset([model.model_path, task_data])},
             executor=DispatcherExecutor(
                 machine_dict={
                     "batch_type": "Bohrium",
