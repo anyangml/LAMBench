@@ -35,6 +35,11 @@ def get_dataset(paths: list[Optional[Path]]) -> Optional[list[BohriumDatasetsArt
     for path in paths:
         if path is not None and str(path).startswith("/bohr/"):
             r.append(BohriumDatasetsArtifact(path))
+        # handle dual label datasets
+        elif path is not None and isinstance(path, dict):
+            for p in path.values():
+                if str(p).startswith("/bohr/"):
+                    r.append(BohriumDatasetsArtifact(p))
     # due the constraint of the dflow Task, return None if no dataset, but not an empty list
     return r if r else None
 
