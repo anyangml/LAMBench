@@ -36,6 +36,7 @@ def get_dataset(paths: list[Optional[Path]]) -> Optional[list[BohriumDatasetsArt
         if path is not None and str(path).startswith("/bohr/"):
             r.append(BohriumDatasetsArtifact(path))
     # due the constraint of the dflow Task, return None if no dataset, but not an empty list
+    logging.warning(f"Datasets collected: {r}")
     return r if r else None
 
 
@@ -58,6 +59,7 @@ def submit_tasks_dflow(
             task_data = list(task.test_data.values()) if isinstance(task.test_data, dict) else [task.test_data]
         else:
             task_data = []
+        logging.warning(f"Submitting task {name} with test data paths: {task_data}")
 
         dflow_task = Task(
             name=name,
