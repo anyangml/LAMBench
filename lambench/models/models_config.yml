@@ -59,7 +59,7 @@
   model_type: ASE
   model_family: UMA
   model_path: /bohr/testmodel-gevy/v13/uma-s-1.2/uma-s-1p2.pt
-  virtualenv: registry.dp.tech/dptech/dp/native/prod-375/lambench:v2.14
+  virtualenv: registry.dp.tech/dptech/dp/native/prod-26832/testuma:s1p2
   model_metadata:
     pretty_name: UMA-S-1.2
     date_added: 2026-03-09
