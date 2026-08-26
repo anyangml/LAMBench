@@ -27,6 +27,38 @@
       orb-models: 0.5.2
   show_calculator_task: True
 
+- model_name: dpa4_260609_beta
+  model_type: DP
+  model_family: DP
+  model_path: /bohr/testmodel-gevy/v16/test_dpa4_beta/model.ckpt-3400000.pt
+  virtualenv: registry.dp.tech/dptech/dp/native/prod-26832/triton:dpa4
+  model_metadata:
+    pretty_name: DPA-4.0-Beta
+    date_added: 2026-06-09
+    model_description: DP 2026 Q2, 16 layers with dynamic nnei.
+    num_parameters: 3268689
+    packages:
+      deepmd-kit: P0414
+    use_separate_spin_charge: True
+  supports_omol: True
+  skip_tasks: [PropertyFinetuneTask]
+  show_calculator_task: True
+
+- model_name: UMA_s_1p2
+  model_type: ASE
+  model_family: UMA
+  model_path: /bohr/testmodel-gevy/v13/uma-s-1.2/uma-s-1p2.pt
+  virtualenv: registry.dp.tech/dptech/dp/native/prod-26832/testuma:s1p2
+  model_metadata:
+    pretty_name: UMA-S-1.2
+    date_added: 2026-03-09
+    num_parameters: 6000000
+    model_description: UMA-S-1.2
+    packages:
+      fairchem-core: 2.3.0
+  supports_omol: True
+  show_calculator_task: True
+
 - model_name: 7net-mf-ompa
   model_type: ASE
   model_family: SevenNet
