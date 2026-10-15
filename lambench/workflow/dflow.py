@@ -1,6 +1,3 @@
-# Environment variables must be loaded before importing dflow and lambench.
-# ruff: noqa: E402
-
 import logging
 import os
 from pathlib import Path

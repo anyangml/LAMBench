@@ -130,7 +130,7 @@ class ResultsFetcher:
         return results
 
     def fetch_diatomics_results(self) -> dict[str, dict]:
-        """Returns aggregated homonuclear-diatomic scores for leaderboard models."""
+        """Returns aggregated diatomics roughness results for all leaderboard models."""
         results = {}
         for model in self.leaderboard_models:
             task_results = CalculatorRecord.query(
